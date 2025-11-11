@@ -1,24 +1,34 @@
-export default function TotalSection({ total, received, setReceived, change, onConfirm }) {
+export default function TotalSection({ total, received, setReceived, change, onConfirm, selectedItems }) {
+    const totalQty = selectedItems.reduce((sum, item) => sum + item.qty, 0);
     return (
-        <div className="bg-white p-4 rounded-xl shadow-md">
-            <p className="text-lg">合計：¥{total}</p>
+        <div className="total-section">
+            <ul className="total-selected-list">
+                {selectedItems.map(item => (
+                    <li key={item.id} className="total-selected-item">
+                        <span className="item-name">{item.name}</span>
+                        <span className="item-qty fixed-qty">x {item.qty}</span>
+                        <span className="item-subtotal">¥{item.subtotal}</span>
+                    </li>
+                ))}
+            </ul>
+            <p className="total-amount">合計：¥{total}（{totalQty}点）</p>
             <input
                 type="number"
                 value={received}
                 onChange={(e) => setReceived(e.target.value)}
                 placeholder="受け取り金額"
-                className="mt-2 w-full border rounded p-2"
+                className="total-input"
             />
             <button
                 onClick={onConfirm}
-                className="mt-3 w-full bg-amber-200 hover:bg-amber-300 rounded p-2 font-semibold"
+                className="total-confirm-button"
             >
                 確定
             </button>
             {change !== null && (
-            <p className="mt-2 text-xl font-bold text-green-700">
-            お釣り：¥{change}
-            </p>
+                <p className="total-change">
+                    お釣り：¥{change}
+                </p>
             )}
         </div>
     );

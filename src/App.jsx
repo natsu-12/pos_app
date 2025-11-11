@@ -19,6 +19,17 @@ function App() {
     setTotal(newTotal);
   }, [cart]);
 
+  // 選択されたアイテムの詳細リスト
+  const selectedItems = cart.map(item => {
+    const product = products.find(p => p.id === item.id);
+    return {
+      id: item.id,
+      name: product?.name,
+      qty: item.qty,
+      subtotal: (product?.unit_price || 0) * item.qty,
+    };
+  });
+
   const handleIncrement = (id) => {
     setCart((prev) => {
       const exists = prev.find((item) => item.id === id);
@@ -62,10 +73,11 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F5F4] p-4">
-      <h1 className="text-center text-2xl font-semibold mb-4 text-gray-700">
-        L’Atelier Natsume POS
+    <div className="app-container">
+      <h1 className="app-title">
+        L’Atelier Natsume
       </h1>
+      <h2 className="app-subtitle">お会計</h2>
       <ProductList
         products={products}
         cart={cart}
@@ -78,7 +90,9 @@ function App() {
         setReceived={setReceived}
         change={change}
         onConfirm={handleConfirm}
+        selectedItems={selectedItems}
       />
+      <h3 className="app-thanks">お買い上げありがとうございます！</h3>
       <ActionButtons onReset={handleReset} />
     </div>
   );
