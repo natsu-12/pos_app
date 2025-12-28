@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     const newTotal = cart.reduce((sum, item) => {
       const product = products.find((p) => p.id === item.id);
-      return sum + (product?.unit_price || 0) * item.qty;
+      return sum + (product?.price || 0) * item.qty;
     }, 0);
     setTotal(newTotal);
   }, [cart]);
@@ -26,7 +26,7 @@ function App() {
       id: item.id,
       name: product?.name,
       qty: item.qty,
-      subtotal: (product?.unit_price || 0) * item.qty,
+      subtotal: (product?.price || 0) * item.qty,
     };
   });
 
