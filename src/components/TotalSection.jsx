@@ -1,6 +1,5 @@
 export default function TotalSection({ total, received, setReceived, change, onConfirm, selectedItems }) {
     const totalQty = selectedItems.reduce((sum, item) => sum + item.qty, 0);
-    console.log("selectedItems:", selectedItems);
     return (
         <div className="total-section">
             <ul className="total-selected-list">
