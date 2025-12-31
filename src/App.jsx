@@ -13,7 +13,7 @@ function App() {
   // 合計計算
   useEffect(() => {
     const newTotal = cart.reduce((sum, item) => {
-      const product = products.find((p) => p.id === item.id);
+      const product = products.find((p) => Number(p.id) === Number(item.id));
       return sum + (product?.price || 0) * item.qty;
     }, 0);
     setTotal(newTotal);
@@ -21,7 +21,7 @@ function App() {
 
   // 選択されたアイテムの詳細リスト
   const selectedItems = cart.map(item => {
-    const product = products.find(p => p.id === item.id);
+    const product = products.find(p => Number(p.id) === Number(item.id));
     return {
       id: item.id,
       name: product?.name,
@@ -31,20 +31,22 @@ function App() {
   });
 
   const handleIncrement = (id) => {
+    const pid = Number(id);
     setCart((prev) => {
-      const exists = prev.find((item) => item.id === id);
+      const exists = prev.find((item) => item.id === pid);
       if (exists) {
-        return prev.map((i) => (i.id === id ? { ...i, qty: i.qty + 1 } : i));
+        return prev.map((i) => (i.id === pid ? { ...i, qty: i.qty + 1 } : i));
       } else {
-        return [...prev, { id, qty: 1 }];
+        return [...prev, { id: pid, qty: 1 }];
       }
     });
   };
 
   const handleDecrement = (id) => {
+    const pid = Number(id);
     setCart((prev) =>
       prev
-        .map((i) => (i.id === id ? { ...i, qty: Math.max(i.qty - 1, 0) } : i))
+        .map((i) => (i.id === pid ? { ...i, qty: Math.max(i.qty - 1, 0) } : i))
         .filter((i) => i.qty > 0)
     );
   };
