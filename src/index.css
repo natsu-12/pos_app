@@ -194,3 +194,117 @@
   width: 40px;
   text-align: right;
 }
+
+.mode-bar {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 16px;
+}
+
+.mode-toggle {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.mode-toggle:hover {
+  background: #f3f3f3;
+}
+
+/* Sales */
+.sales-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.sales-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.sales-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #f7f7f7;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.sales-empty {
+  color: #666;
+}
+
+.sales-list {
+  display: grid;
+  gap: 10px;
+}
+
+.sales-card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.sales-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.sales-time {
+  color: #666;
+  font-weight: 700;
+}
+
+.sales-total {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.sales-items {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.sales-item-row {
+  display: grid;
+  grid-template-columns: 1fr 60px 90px;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.sales-item-name {
+  font-weight: 700;
+}
+
+.sales-item-qty {
+  text-align: right;
+  color: #555;
+}
+
+.sales-item-subtotal {
+  text-align: right;
+  font-weight: 800;
+}
+
+.sales-footer {
+  display: flex;
+  justify-content: space-between;
+  color: #555;
+  font-weight: 700;
+  border-top: 1px dashed #eee;
+  padding-top: 8px;
+}

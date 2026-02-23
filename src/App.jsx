@@ -3,12 +3,16 @@ import { products } from "./data/products";
 import ProductList from "./components/ProductList";
 import TotalSection from "./components/TotalSection";
 import ActionButtons from "./components/ActionButtons";
+import SalesToday from "./components/SalesToday";
+
 
 function App() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
   const [received, setReceived] = useState("");
   const [change, setChange] = useState(null);
+  const [showSales, setShowSales] = useState(false);
+
 
   // 合計計算
   useEffect(() => {
@@ -79,24 +83,41 @@ function App() {
       <h1 className="app-title">
         L’Atelier Natsume
       </h1>
-      <h2 className="app-subtitle">お会計</h2>
-      <ProductList
-        products={products}
-        cart={cart}
-        onIncrement={handleIncrement}
-        onDecrement={handleDecrement}
-      />
-      <TotalSection
-        total={total}
-        received={received}
-        setReceived={setReceived}
-        change={change}
-        onConfirm={handleConfirm}
-        selectedItems={selectedItems}
-      />
-      <h3 className="app-thanks">お買い上げありがとうございます！</h3>
-      <ActionButtons onReset={handleReset} />
+        {showSales ? (
+          <SalesToday products={products} />
+        ) : (
+          <>
+            <h2 className="app-subtitle">お会計</h2>
+
+            <ProductList
+              products={products}
+              cart={cart}
+              onIncrement={handleIncrement}
+              onDecrement={handleDecrement}
+            />
+
+            <TotalSection
+              total={total}
+              received={received}
+              setReceived={setReceived}
+              change={change}
+              onConfirm={handleConfirm}
+              selectedItems={selectedItems}
+            />
+
+            <h3 className="app-thanks">お買い上げありがとうございます！</h3>
+
+            <ActionButtons onReset={handleReset} />
+          </>
+        )}
+      <div className="mode-bar">
+        <button className="mode-toggle" onClick={() => setShowSales((v) => !v)}>
+          {showSales ? "会計へ戻る" : "当日売上一覧"}
+        </button>
+      </div>
     </div>
+
+    
   );
 }
 
