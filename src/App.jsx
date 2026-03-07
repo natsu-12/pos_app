@@ -87,7 +87,7 @@ function App() {
           <SalesToday products={products} />
         ) : (
           <>
-            <h2 className="app-subtitle">お会計</h2>
+            <h2 className="app-subtitle">レジ</h2>
 
             <ProductList
               products={products}
