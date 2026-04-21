@@ -308,3 +308,35 @@
   border-top: 1px dashed #eee;
   padding-top: 8px;
 }
+
+/* Keypad */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.keypad button {
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  background: #f3f3f3;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.keypad button:hover {
+  background: #e8e8e8;
+}
+
+.keypad-clear {
+  grid-column: span 3;
+  background: #ffd9d9;
+}
+
+.keypad-clear:hover {
+  background: #ffcaca;
+}
